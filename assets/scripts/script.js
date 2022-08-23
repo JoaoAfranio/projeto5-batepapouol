@@ -1,4 +1,7 @@
 const nav = document.querySelector("nav");
+let privacyContact = "";
+
+function findMessages() {}
 
 function hiddenElement(element) {
   element.classList.add("hidden");
@@ -30,9 +33,15 @@ function selectContact(contact) {
 
   const selected = contact.querySelector("ion-icon.checkmark");
   selected.classList.add("selected");
+
+  if (contact.querySelector("span").id !== "all") {
+    selectPrivacy("private");
+  } else {
+    selectPrivacy("public");
+  }
 }
 
-function selectPrivacy(privacy) {
+function selectPrivacy(typePrivacy) {
   const previousSelected = document.querySelector(
     ".privacy .checkmark.selected"
   );
@@ -40,6 +49,9 @@ function selectPrivacy(privacy) {
   if (previousSelected != null) {
     previousSelected.classList.remove("selected");
   }
-  const selected = privacy.querySelector("ion-icon.checkmark");
+
+  const selected = document.querySelector(
+    `.privacy#${typePrivacy} ion-icon.checkmark`
+  );
   selected.classList.add("selected");
 }

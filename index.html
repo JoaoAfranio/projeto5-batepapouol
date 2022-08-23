@@ -57,32 +57,32 @@
           <h1>Escolha um contato para enviar messagem:</h1>
           <div class="contact" onClick="selectContact(this)">
             <ion-icon name="people"></ion-icon>
-            Todos
+            <span id="all">Todos</span>
             <ion-icon class="checkmark selected" name="checkmark"></ion-icon>
           </div>
 
           <div class="contact" onClick="selectContact(this)">
             <ion-icon name="person-circle"></ion-icon>
-            João
+            <span id="João">João</span>
             <ion-icon class="checkmark" name="checkmark"></ion-icon>
           </div>
 
           <div class="contact" onClick="selectContact(this)">
             <ion-icon name="person-circle"></ion-icon>
-            Maria
+            <span id="Maria">Maria</span>
             <ion-icon class="checkmark" name="checkmark"></ion-icon>
           </div>
         </div>
 
         <div class="visibility">
           <h1>Escolha a visibilidade</h1>
-          <div class="privacy" onClick="selectPrivacy(this)">
+          <div class="privacy" id="public">
             <ion-icon name="lock-open"></ion-icon>
             Público
             <ion-icon class="checkmark selected" name="checkmark"></ion-icon>
           </div>
 
-          <div class="privacy" onClick="selectPrivacy(this)">
+          <div class="privacy" id="private">
             <ion-icon name="lock-closed"></ion-icon>
             Reservadamente
             <ion-icon class="checkmark" name="checkmark"></ion-icon>
