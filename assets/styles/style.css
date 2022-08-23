@@ -7,6 +7,7 @@ body {
 
 body {
   font-family: "Roboto";
+  font-weight: 400;
 }
 
 @media (max-width: 375px) {
@@ -19,6 +20,8 @@ body {
     background: #ffffff;
 
     gap: 15px;
+
+    display: none;
   }
 
   .login img {
@@ -50,5 +53,106 @@ body {
 
     font-size: 18px;
     color: #696969;
+  }
+
+  main {
+    background: #f3f3f3;
+    height: 100%;
+  }
+
+  header {
+    height: 80px;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #ffffff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+
+    padding: 0px 22px;
+  }
+
+  header ion-icon {
+    font-size: 42px;
+  }
+
+  section {
+    margin-top: 25px;
+  }
+
+  section .message {
+    height: 42px;
+    border-radius: 2px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0px 10px;
+    margin-bottom: 5px;
+  }
+
+  .message p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .message p .time {
+    color: #aaaaaa;
+    margin-right: 5px;
+  }
+
+  .message p .person {
+    font-weight: bolder;
+    margin-right: 5px;
+  }
+
+  .status-info {
+    background-color: #dcdcdc;
+  }
+
+  .status-message {
+    background-color: #ffffff;
+  }
+
+  .status-private {
+    background-color: #ffdede;
+  }
+
+  footer {
+    height: 80px;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+
+    padding: 0px 22px;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  footer input {
+    width: 80%;
+    height: 30px;
+    font-size: 18px;
+    border: none;
+    outline: none;
+  }
+
+  footer input::placeholder {
+    color: #000000;
+    font-style: italic;
+    font-size: 18px;
+  }
+
+  footer ion-icon {
+    font-size: 30px;
   }
 }
