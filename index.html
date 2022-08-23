@@ -12,10 +12,10 @@
     <div class="login">
       <img src="./src/logo 2.png" />
       <input type="text" placeholder="Digite seu nome" />
-      <button>Entrar</button>
+      <button onCLick="login()">Entrar</button>
     </div>
 
-    <main>
+    <main class="hidden">
       <header>
         <img src="./src/logo 1.png" alt="logo" />
         <ion-icon onClick="showNav()" name="people"></ion-icon>
@@ -50,38 +50,42 @@
       </footer>
     </main>
 
-    <nav onClick="hiddenElement(this)" class="hidden">
+    <nav class="hidden">
+      <div onClick="hiddenNav()" class="opacity"></div>
       <section>
         <div class="contacts">
           <h1>Escolha um contato para enviar messagem:</h1>
-          <div class="contact">
+          <div class="contact" onClick="selectContact(this)">
             <ion-icon name="people"></ion-icon>
             Todos
+            <ion-icon class="checkmark selected" name="checkmark"></ion-icon>
+          </div>
+
+          <div class="contact" onClick="selectContact(this)">
+            <ion-icon name="person-circle"></ion-icon>
+            João
             <ion-icon class="checkmark" name="checkmark"></ion-icon>
           </div>
 
-          <div class="contact">
-            <ion-icon name="person-circle"></ion-icon>
-            João
-          </div>
-
-          <div class="contact">
+          <div class="contact" onClick="selectContact(this)">
             <ion-icon name="person-circle"></ion-icon>
             Maria
+            <ion-icon class="checkmark" name="checkmark"></ion-icon>
           </div>
         </div>
 
         <div class="visibility">
           <h1>Escolha a visibilidade</h1>
-          <div class="privacy">
+          <div class="privacy" onClick="selectPrivacy(this)">
             <ion-icon name="lock-open"></ion-icon>
             Público
-            <ion-icon class="checkmark" name="checkmark"></ion-icon>
+            <ion-icon class="checkmark selected" name="checkmark"></ion-icon>
           </div>
 
-          <div class="privacy">
+          <div class="privacy" onClick="selectPrivacy(this)">
             <ion-icon name="lock-closed"></ion-icon>
             Reservadamente
+            <ion-icon class="checkmark" name="checkmark"></ion-icon>
           </div>
         </div>
       </section>

@@ -20,8 +20,6 @@ body {
     background: #ffffff;
 
     gap: 15px;
-
-    display: none;
   }
 
   .login img {
@@ -157,6 +155,10 @@ body {
   }
 
   nav {
+    z-index: 1;
+  }
+
+  nav .opacity {
     height: 100%;
     width: 100%;
     background-color: #00000099;
@@ -165,7 +167,7 @@ body {
     top: 0;
     right: 0;
 
-    z-index: 1;
+    z-index: 2;
   }
 
   nav section {
@@ -176,6 +178,7 @@ body {
     position: fixed;
     top: 0;
     right: 0;
+    z-index: 3;
 
     padding: 0px 18px;
   }
@@ -208,6 +211,12 @@ body {
     font-size: 18px;
     color: #28bb25;
     margin-left: auto;
+    display: none;
+  }
+
+  .contact ion-icon.checkmark.selected,
+  .privacy ion-icon.checkmark.selected {
+    display: initial;
   }
 
   .hidden {
