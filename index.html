@@ -18,7 +18,7 @@
     <main>
       <header>
         <img src="./src/logo 1.png" alt="logo" />
-        <ion-icon name="people"></ion-icon>
+        <ion-icon onClick="showNav()" name="people"></ion-icon>
       </header>
       <section>
         <div class="message status-info">
@@ -49,6 +49,43 @@
         <ion-icon name="paper-plane-outline"></ion-icon>
       </footer>
     </main>
+
+    <nav onClick="hiddenElement(this)" class="hidden">
+      <section>
+        <div class="contacts">
+          <h1>Escolha um contato para enviar messagem:</h1>
+          <div class="contact">
+            <ion-icon name="people"></ion-icon>
+            Todos
+            <ion-icon class="checkmark" name="checkmark"></ion-icon>
+          </div>
+
+          <div class="contact">
+            <ion-icon name="person-circle"></ion-icon>
+            João
+          </div>
+
+          <div class="contact">
+            <ion-icon name="person-circle"></ion-icon>
+            Maria
+          </div>
+        </div>
+
+        <div class="visibility">
+          <h1>Escolha a visibilidade</h1>
+          <div class="privacy">
+            <ion-icon name="lock-open"></ion-icon>
+            Público
+            <ion-icon class="checkmark" name="checkmark"></ion-icon>
+          </div>
+
+          <div class="privacy">
+            <ion-icon name="lock-closed"></ion-icon>
+            Reservadamente
+          </div>
+        </div>
+      </section>
+    </nav>
 
     <script
       type="module"
