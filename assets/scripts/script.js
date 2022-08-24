@@ -3,6 +3,7 @@ const messages = document.querySelector("main section");
 
 let nameUser = "";
 let privacyContact = "Todos";
+let privacy = "";
 
 let lastTimeMessage = "00:00:00";
 
@@ -23,35 +24,41 @@ function findMessages() {
     if (lastTimeMessage === timeMessage) return;
 
     for (let i = 0; i < data.length; i++) {
-      if (data[i].type === "message") {
-        allMessages += `
-          <div class="message status-message">
-            <p>
-            <span class="time">(${data[i].time})</span>
-            <span class="person">${data[i].from}</span>para
-            <span class="person">${data[i].to}</span>: ${data[i].text}
-            </p>
-          </div>
-          `;
-      } else if (data[i].type === "status") {
-        allMessages += `
-          <div class="message status-info">
-            <p>
+      if (
+        data[i].to === "Todos" ||
+        data[i].to === nameUser ||
+        data[i].from === nameUser
+      ) {
+        if (data[i].type === "message") {
+          allMessages += `
+            <div class="message status-message">
+              <p>
               <span class="time">(${data[i].time})</span>
-              <span class="person">${data[i].from}</span>${data[i].text}
-            </p>
-          </div>
-          `;
-      } else if (data[i].type === "private_message") {
-        allMessages += `
-          <div class="message status-private">
-            <p>
-            <span class="time">(${data[i].time})</span>
-            <span class="person">${data[i].from}</span>para
-            <span class="person">${data[i].to}</span>: ${data[i].text}
-            </p>
-          </div>
-          `;
+              <span class="person">${data[i].from}</span>para
+              <span class="person">${data[i].to}</span>: ${data[i].text}
+              </p>
+            </div>
+            `;
+        } else if (data[i].type === "status") {
+          allMessages += `
+            <div class="message status-info">
+              <p>
+                <span class="time">(${data[i].time})</span>
+                <span class="person">${data[i].from}</span>${data[i].text}
+              </p>
+            </div>
+            `;
+        } else if (data[i].type === "private_message") {
+          allMessages += `
+            <div class="message status-private">
+              <p>
+              <span class="time">(${data[i].time})</span>
+              <span class="person">${data[i].from}</span>para
+              <span class="person">${data[i].to}</span>: ${data[i].text}
+              </p>
+            </div>
+            `;
+        }
       }
     }
 
@@ -84,13 +91,19 @@ function findContacts() {
 
     contacts.innerHTML = allContacts;
   });
+
+  // let selectedContact = document.querySelector(`#${privacyContact}`);
+  // if (selectedContact === null) {
+  //   selectedContact = document.querySelector("#Todos");
+  // }
+  // selectContact(selectedContact.parentNode);
 }
 
 function sendMessage() {
   let message = document.querySelector("input#textMessage");
 
   if (privacyContact !== "Todos") {
-    typeMessage = "message_private";
+    typeMessage = "private_message";
   } else {
     typeMessage = "message";
   }
@@ -172,18 +185,20 @@ function selectContact(contact) {
   const previousSelected = document.querySelector(
     ".contact .checkmark.selected"
   );
-  if (previousSelected != null) {
+  if (previousSelected !== null) {
     previousSelected.classList.remove("selected");
   }
 
   const selected = contact.querySelector("ion-icon.checkmark");
   selected.classList.add("selected");
 
-  if (contact.querySelector("span").id !== "all") {
+  if (contact.querySelector("span").id !== "Todos") {
     selectPrivacy("private");
   } else {
     selectPrivacy("public");
   }
+
+  privacyContact = contact.querySelector("span").id;
 }
 
 function selectPrivacy(typePrivacy) {
@@ -199,6 +214,7 @@ function selectPrivacy(typePrivacy) {
     `.privacy#${typePrivacy} ion-icon.checkmark`
   );
   selected.classList.add("selected");
+  privacy = typePrivacy;
 }
 
 document.addEventListener(
