@@ -1,21 +1,24 @@
 const nav = document.querySelector("nav");
 const messages = document.querySelector("main section");
+
 let nameUser = "";
 let privacyContact = "Todos";
-let countMessages = 0;
 let countPersons = 0;
+
+let lastTimeMessage = "00:00:00";
 
 function findMessages() {
   const url = "https://mock-api.driven.com.br/api/v6/uol/messages";
   axios.get(url).then(function (result) {
     let data = result.data;
+    let allMessages = "";
+    timeMessage = data[data.length - 1].time;
 
-    console.log("countMessages: " + countMessages);
-    console.log("result.data.length " + data.length);
-    if (countMessages !== data.length) {
-      for (let i = countMessages; i < data.length; i++) {
-        if (data[i].type === "message") {
-          messages.innerHTML += `
+    if (lastTimeMessage === timeMessage) return;
+
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].type === "message") {
+        allMessages += `
           <div class="message status-message">
             <p>
             <span class="time">(${data[i].time})</span>
@@ -24,10 +27,8 @@ function findMessages() {
             </p>
           </div>
           `;
-        }
-
-        if (data[i].type === "status") {
-          messages.innerHTML += `
+      } else if (data[i].type === "status") {
+        allMessages += `
           <div class="message status-info">
             <p>
               <span class="time">(${data[i].time})</span>
@@ -35,10 +36,8 @@ function findMessages() {
             </p>
           </div>
           `;
-        }
-
-        if (data[i].type === "private_message") {
-          messages.innerHTML += `
+      } else if (data[i].type === "private_message") {
+        allMessages += `
           <div class="message status-private">
             <p>
             <span class="time">(${data[i].time})</span>
@@ -47,10 +46,12 @@ function findMessages() {
             </p>
           </div>
           `;
-        }
       }
-      countMessages = data.length;
     }
+
+    lastTimeMessage = timeMessage;
+    messages.innerHTML = allMessages;
+    messages.scrollIntoView(0);
   });
 }
 
@@ -88,6 +89,11 @@ function sendMessage() {
     typeMessage = "message";
   }
 
+  if (message.value === "") {
+    alert("Digite uma messagem");
+    return;
+  }
+
   const url = "https://mock-api.driven.com.br/api/v6/uol/messages";
   axios
     .post(url, {
@@ -99,15 +105,12 @@ function sendMessage() {
     .then(function (response) {
       console.log(response);
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch(function () {
+      alert("Vocês foi desconectado");
+      window.location.reload();
     });
 
   message.value = "";
-}
-
-function hiddenElement(element) {
-  element.classList.add("hidden");
 }
 
 function showNav() {
@@ -137,8 +140,8 @@ function login() {
 
       maintainConection();
     })
-    .catch(function (error) {
-      alert(error);
+    .catch(function () {
+      alert("Nome invalido, digite outro nome");
     });
 }
 
@@ -194,3 +197,13 @@ function selectPrivacy(typePrivacy) {
   );
   selected.classList.add("selected");
 }
+
+document.addEventListener(
+  "keydown",
+  (event) => {
+    if (event.code === "Enter") {
+      sendMessage();
+    }
+  },
+  false
+);
