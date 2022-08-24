@@ -29,15 +29,14 @@
 
     <nav class="hidden">
       <div onClick="hiddenNav()" class="opacity"></div>
-      <section>
-        <div class="contacts">
-          <h1>Escolha um contato para enviar messagem:</h1>
-          <div class="contact" onClick="selectContact(this)">
-            <ion-icon name="people"></ion-icon>
-            <span id="all">Todos</span>
-            <ion-icon class="checkmark selected" name="checkmark"></ion-icon>
-          </div>
+      <section class="navContacts">
+        <h1>Escolha um contato para enviar messagem:</h1>
+        <div class="contact" onClick="selectContact(this)">
+          <ion-icon name="people"></ion-icon>
+          <span id="all">Todos</span>
+          <ion-icon class="checkmark selected" name="checkmark"></ion-icon>
         </div>
+        <div class="contacts"></div>
 
         <div class="visibility">
           <h1>Escolha a visibilidade</h1>

@@ -6,221 +6,218 @@ body {
   background-color: #f3f3f3;
 }
 
-@media (max-width: 375px) {
-  .login {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-    background: #ffffff;
-    height: 100vh;
+  background: #ffffff;
+  height: 100vh;
 
-    gap: 15px;
-  }
+  gap: 15px;
+}
 
-  .login img {
-    width: 130px;
-    height: 92px;
-  }
+.login img {
+  width: 130px;
+  height: 92px;
+}
 
-  .login input {
-    width: 260px;
-    height: 54px;
+.login input {
+  width: 260px;
+  height: 54px;
 
-    border: 1px solid #d7d7d7;
-    border-radius: 4px;
+  border: 1px solid #d7d7d7;
+  border-radius: 4px;
 
-    color: #aeaeae;
-    text-align: center;
-    font-size: 18px;
+  color: #aeaeae;
+  text-align: center;
+  font-size: 18px;
 
-    margin-top: 100px;
-  }
+  margin-top: 100px;
+}
 
-  .login button {
-    height: 45px;
-    width: 109px;
-    border-radius: 9px;
-    border: none;
+.login button {
+  height: 45px;
+  width: 109px;
+  border-radius: 9px;
+  border: none;
 
-    font-size: 18px;
-    color: #696969;
-  }
+  font-size: 18px;
+  color: #696969;
+}
 
-  main {
-    background: #f3f3f3;
-    height: 100%;
-  }
+main {
+  background: #f3f3f3;
+  height: 100%;
+}
 
-  header {
-    height: 80px;
-    width: 100%;
+header {
+  height: 80px;
+  width: 100%;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    background: #ffffff;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
 
-    padding: 0px 22px;
+  padding: 0px 22px;
 
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+}
 
-  header ion-icon {
-    font-size: 42px;
-  }
+header ion-icon {
+  font-size: 42px;
+}
 
-  main section {
-    margin-top: 95px;
-    margin-bottom: 100px;
-    scroll-margin: 100px;
-  }
+main section {
+  margin-top: 95px;
+  margin-bottom: 100px;
+  scroll-margin: 100px;
+}
 
-  main section .message {
-    min-height: 42px;
-    border-radius: 2px;
+main section .message {
+  min-height: 42px;
+  border-radius: 2px;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    padding: 0px 10px;
-    margin-bottom: 5px;
-  }
+  padding: 0px 10px;
+  margin-bottom: 5px;
+}
 
-  .message p {
-    font-size: 14px;
-    line-height: 20px;
-  }
+.message p {
+  font-size: 14px;
+  line-height: 20px;
+}
 
-  .message p .time {
-    color: #aaaaaa;
-    margin-right: 5px;
-  }
+.message p .time {
+  color: #aaaaaa;
+  margin-right: 5px;
+}
 
-  .message p .person {
-    font-weight: bolder;
-    margin-right: 5px;
-  }
+.message p .person {
+  font-weight: bolder;
+  margin-right: 5px;
+}
 
-  .status-info {
-    background-color: #dcdcdc;
-  }
+.status-info {
+  background-color: #dcdcdc;
+}
 
-  .status-message {
-    background-color: #ffffff;
-  }
+.status-message {
+  background-color: #ffffff;
+}
 
-  .status-private {
-    background-color: #ffdede;
-  }
+.status-private {
+  background-color: #ffdede;
+}
 
-  footer {
-    height: 80px;
-    width: 100%;
+footer {
+  height: 80px;
+  width: 100%;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
 
-    padding: 0px 22px;
+  padding: 0px 22px;
 
-    position: fixed;
-    bottom: 0;
-    left: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 
-    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
-  }
+  box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+}
 
-  footer input {
-    width: 80%;
-    height: 30px;
-    font-size: 18px;
-    border: none;
-    outline: none;
-  }
+footer input {
+  width: 80%;
+  height: 30px;
+  font-size: 18px;
+  border: none;
+  outline: none;
+}
 
-  footer input::placeholder {
-    color: #000000;
-    font-style: italic;
-    font-size: 18px;
-  }
+footer input::placeholder {
+  color: #000000;
+  font-style: italic;
+  font-size: 18px;
+}
 
-  footer ion-icon {
-    font-size: 30px;
-  }
+footer ion-icon {
+  font-size: 30px;
+}
 
-  nav {
-    z-index: 1;
-  }
+nav {
+  z-index: 1;
+}
 
-  nav .opacity {
-    height: 100%;
-    width: 100%;
-    background-color: #00000099;
+nav .opacity {
+  height: 100%;
+  width: 100%;
+  background-color: #00000099;
 
-    position: fixed;
-    top: 0;
-    right: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
 
-    z-index: 2;
-  }
+  z-index: 2;
+}
 
-  nav section {
-    height: 100%;
-    width: 259px;
-    background-color: #ffffff;
+nav section {
+  height: 100%;
+  width: 259px;
+  background-color: #ffffff;
 
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 3;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 3;
 
-    padding: 0px 18px;
-  }
+  padding: 0px 18px;
+}
 
-  .contacts h1,
-  .visibility h1 {
-    font-size: 16px;
-    font-weight: 700;
-    text-align: center;
+.navContacts h1 {
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
 
-    margin: 30px 0px;
-  }
+  margin: 30px 0px;
+}
 
-  .contact,
-  .privacy {
-    height: 36px;
+.contact,
+.privacy {
+  height: 36px;
 
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-  .contact ion-icon,
-  .privacy ion-icon {
-    font-size: 24px;
-  }
+.contact ion-icon,
+.privacy ion-icon {
+  font-size: 24px;
+}
 
-  .contact ion-icon.checkmark,
-  .privacy ion-icon.checkmark {
-    font-size: 18px;
-    color: #28bb25;
-    margin-left: auto;
-    display: none;
-  }
+.contact ion-icon.checkmark,
+.privacy ion-icon.checkmark {
+  font-size: 18px;
+  color: #28bb25;
+  margin-left: auto;
+  display: none;
+}
 
-  .contact ion-icon.checkmark.selected,
-  .privacy ion-icon.checkmark.selected {
-    display: initial;
-  }
+.contact ion-icon.checkmark.selected,
+.privacy ion-icon.checkmark.selected {
+  display: initial;
+}
 
-  .hidden {
-    display: none;
-  }
+.hidden {
+  display: none;
 }

@@ -3,9 +3,15 @@ const messages = document.querySelector("main section");
 
 let nameUser = "";
 let privacyContact = "Todos";
-let countPersons = 0;
 
 let lastTimeMessage = "00:00:00";
+
+findMessages();
+
+setInterval(function () {
+  findContacts();
+  findMessages();
+}, 3000);
 
 function findMessages() {
   const url = "https://mock-api.driven.com.br/api/v6/uol/messages";
@@ -62,23 +68,23 @@ function findContacts() {
   axios.get(url).then(function (result) {
     let data = result.data;
 
-    if (countPersons !== data.length) {
-      for (let i = countPersons; i < data.length; i++) {
-        contacts.innerHTML += `
+    let allContacts = "";
+
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].name !== nameUser) {
+        allContacts += `
           <div class="contact" onClick="selectContact(this)">
             <ion-icon name="person-circle"></ion-icon>
-              <span id="João">${data[i].name}</span>
+              <span id="${data[i].name}">${data[i].name}</span>
             <ion-icon class="checkmark" name="checkmark"></ion-icon>
           </div>
         `;
       }
-
-      countPersons = data.length;
     }
+
+    contacts.innerHTML = allContacts;
   });
 }
-
-findMessages();
 
 function sendMessage() {
   let message = document.querySelector("input#textMessage");
@@ -102,8 +108,8 @@ function sendMessage() {
       text: message.value,
       type: typeMessage,
     })
-    .then(function (response) {
-      console.log(response);
+    .then(function () {
+      findMessages();
     })
     .catch(function () {
       alert("Vocês foi desconectado");
@@ -156,10 +162,7 @@ function conection() {
     .post(url, {
       name: nameUser,
     })
-    .then(function () {
-      findContacts();
-      findMessages();
-    })
+    .then(function () {})
     .catch(function () {
       alert("Não foi possível manter conexão");
     });
