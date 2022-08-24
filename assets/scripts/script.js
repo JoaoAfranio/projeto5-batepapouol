@@ -79,13 +79,23 @@ function findContacts() {
 
     for (let i = 0; i < data.length; i++) {
       if (data[i].name !== nameUser) {
-        allContacts += `
+        if (data[i].name === privacyContact) {
+          allContacts += `
+          <div class="contact" onClick="selectContact(this)">
+            <ion-icon name="person-circle"></ion-icon>
+              <span id="${data[i].name}">${data[i].name}</span>
+            <ion-icon class="selected checkmark" name="checkmark"></ion-icon>
+          </div>
+        `;
+        } else {
+          allContacts += `
           <div class="contact" onClick="selectContact(this)">
             <ion-icon name="person-circle"></ion-icon>
               <span id="${data[i].name}">${data[i].name}</span>
             <ion-icon class="checkmark" name="checkmark"></ion-icon>
           </div>
         `;
+        }
       }
     }
 
