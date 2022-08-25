@@ -16,6 +16,7 @@ setInterval(function () {
 
 function findMessages() {
   const url = "https://mock-api.driven.com.br/api/v6/uol/messages";
+
   axios.get(url).then(function (result) {
     let data = result.data;
     let allMessages = "";
@@ -74,7 +75,6 @@ function findContacts() {
 
   axios.get(url).then(function (result) {
     let data = result.data;
-
     let allContacts = "";
 
     for (let i = 0; i < data.length; i++) {
@@ -101,12 +101,6 @@ function findContacts() {
 
     contacts.innerHTML = allContacts;
   });
-
-  // let selectedContact = document.querySelector(`#${privacyContact}`);
-  // if (selectedContact === null) {
-  //   selectedContact = document.querySelector("#Todos");
-  // }
-  // selectContact(selectedContact.parentNode);
 }
 
 function sendMessage() {
@@ -140,14 +134,6 @@ function sendMessage() {
     });
 
   message.value = "";
-}
-
-function showNav() {
-  nav.classList.remove("hidden");
-}
-
-function hiddenNav() {
-  nav.classList.add("hidden");
 }
 
 function login() {
@@ -185,7 +171,6 @@ function conection() {
     .post(url, {
       name: nameUser,
     })
-    .then(function () {})
     .catch(function () {
       alert("Não foi possível manter conexão");
     });
@@ -229,10 +214,18 @@ function selectPrivacy(typePrivacy) {
 
 document.addEventListener(
   "keydown",
-  (event) => {
+  function (event) {
     if (event.code === "Enter") {
       sendMessage();
     }
   },
   false
 );
+
+function showNav() {
+  nav.classList.remove("hidden");
+}
+
+function hiddenNav() {
+  nav.classList.add("hidden");
+}
