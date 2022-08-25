@@ -89,6 +89,8 @@ main section .message {
 
   padding: 0px 10px;
   margin-bottom: 5px;
+
+  word-break: break-all;
 }
 
 .message p {
