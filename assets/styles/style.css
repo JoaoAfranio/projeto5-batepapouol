@@ -156,6 +156,12 @@ footer ion-icon {
   font-size: 30px;
 }
 
+footer p {
+  font-size: 14px;
+  color: #505050;
+  font-weight: 300;
+}
+
 nav {
   z-index: 1;
 }

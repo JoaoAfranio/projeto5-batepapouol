@@ -104,7 +104,7 @@ function findContacts() {
 }
 
 function sendMessage() {
-  let message = document.querySelector("input#textMessage");
+  const message = document.querySelector("input#textMessage");
 
   if (privacyContact !== "Todos") {
     typeMessage = "private_message";
@@ -180,6 +180,8 @@ function selectContact(contact) {
   const previousSelected = document.querySelector(
     ".contact .checkmark.selected"
   );
+
+  const textSelectedContact = document.querySelector("footer div p");
   if (previousSelected !== null) {
     previousSelected.classList.remove("selected");
   }
@@ -192,8 +194,13 @@ function selectContact(contact) {
   } else {
     selectPrivacy("public");
   }
-
   privacyContact = contact.querySelector("span").id;
+
+  if (privacyContact === "Todos") {
+    textSelectedContact.innerHTML = "";
+  } else {
+    textSelectedContact.innerHTML = `Enviando mensagem para ${privacyContact}`;
+  }
 }
 
 function selectPrivacy(typePrivacy) {
