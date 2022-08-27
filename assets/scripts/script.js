@@ -1,11 +1,14 @@
 const nav = document.querySelector("nav");
 const messages = document.querySelector("main section");
+const divTodos = document.querySelector("#Todos").parentElement;
 
 let nameUser = "";
 let privacyContact = "Todos";
-let privacy = "";
 
-let lastTimeMessage = "00:00:00";
+let allMessages = "";
+let allContacts = "";
+
+let lastTimeMessageUpdate = "00:00:00";
 
 findMessages();
 
@@ -17,53 +20,15 @@ setInterval(function () {
 function findMessages() {
   const url = "https://mock-api.driven.com.br/api/v6/uol/messages";
 
-  axios.get(url).then(function (result) {
+  axios.get(url).then((result) => {
     let data = result.data;
-    let allMessages = "";
     timeMessage = data[data.length - 1].time;
 
-    if (lastTimeMessage === timeMessage) return;
+    if (lastTimeMessageUpdate === timeMessage) return;
 
-    for (let i = 0; i < data.length; i++) {
-      if (
-        data[i].to === "Todos" ||
-        data[i].to === nameUser ||
-        data[i].from === nameUser
-      ) {
-        if (data[i].type === "message") {
-          allMessages += `
-            <div class="message status-message">
-              <p>
-              <span class="time">(${data[i].time})</span>
-              <span class="person">${data[i].from}</span>para
-              <span class="person">${data[i].to}</span>: ${data[i].text}
-              </p>
-            </div>
-            `;
-        } else if (data[i].type === "status") {
-          allMessages += `
-            <div class="message status-info">
-              <p>
-                <span class="time">(${data[i].time})</span>
-                <span class="person">${data[i].from}</span>${data[i].text}
-              </p>
-            </div>
-            `;
-        } else if (data[i].type === "private_message") {
-          allMessages += `
-            <div class="message status-private">
-              <p>
-              <span class="time">(${data[i].time})</span>
-              <span class="person">${data[i].from}</span>para
-              <span class="person">${data[i].to}</span>: ${data[i].text}
-              </p>
-            </div>
-            `;
-        }
-      }
-    }
+    data.forEach(createMessage);
 
-    lastTimeMessage = timeMessage;
+    lastTimeMessageUpdate = timeMessage;
     messages.innerHTML = allMessages;
     messages.scrollIntoView(0);
   });
@@ -73,30 +38,14 @@ function findContacts() {
   const url = "https://mock-api.driven.com.br/api/v6/uol/participants";
   const contacts = document.querySelector(".contacts");
 
-  axios.get(url).then(function (result) {
+  axios.get(url).then((result) => {
     let data = result.data;
-    let allContacts = "";
 
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].name !== nameUser) {
-        if (data[i].name === privacyContact) {
-          allContacts += `
-          <div class="contact" onClick="selectContact(this)">
-            <ion-icon name="person-circle"></ion-icon>
-              <span id="${data[i].name}">${data[i].name}</span>
-            <ion-icon class="selected checkmark" name="checkmark"></ion-icon>
-          </div>
-        `;
-        } else {
-          allContacts += `
-          <div class="contact" onClick="selectContact(this)">
-            <ion-icon name="person-circle"></ion-icon>
-              <span id="${data[i].name}">${data[i].name}</span>
-            <ion-icon class="checkmark" name="checkmark"></ion-icon>
-          </div>
-        `;
-        }
-      }
+    allContacts = "";
+    data.forEach(createContact);
+
+    if (!data.some((users) => users.name === privacyContact)) {
+      selectContact(divTodos);
     }
 
     contacts.innerHTML = allContacts;
@@ -216,7 +165,6 @@ function selectPrivacy(typePrivacy) {
     `.privacy#${typePrivacy} ion-icon.checkmark`
   );
   selected.classList.add("selected");
-  privacy = typePrivacy;
 }
 
 document.addEventListener(
@@ -235,4 +183,71 @@ function showNav() {
 
 function hiddenNav() {
   nav.classList.add("hidden");
+}
+
+function createMessage(message) {
+  if (isUserMessage(message)) {
+    if (message.type === "message") {
+      allMessages += `
+            <div class="message status-message">
+              <p>
+              <span class="time">(${message.time})</span>
+              <span class="person">${message.from}</span>para
+              <span class="person">${message.to}</span>: ${message.text}
+              </p>
+            </div>
+            `;
+    } else if (message.type === "status") {
+      allMessages += `
+            <div class="message status-info">
+              <p>
+                <span class="time">(${message.time})</span>
+                <span class="person">${message.from}</span>${message.text}
+              </p>
+            </div>
+            `;
+    } else if (message.type === "private_message") {
+      allMessages += `
+            <div class="message status-private">
+              <p>
+              <span class="time">(${message.time})</span>
+              <span class="person">${message.from}</span>para
+              <span class="person">${message.to}</span>: ${message.text}
+              </p>
+            </div>
+            `;
+    }
+  }
+}
+
+function isUserMessage(message) {
+  if (
+    message.to === "Todos" ||
+    message.to === nameUser ||
+    message.from === nameUser
+  ) {
+    return true;
+  }
+}
+
+function createContact(contact) {
+  if (contact.name !== nameUser) {
+    if (contact.name === privacyContact) {
+      allContacts += `
+          <div class="contact" onClick="selectContact(this)">
+            <ion-icon name="person-circle"></ion-icon>
+              <span id="${contact.name}">${contact.name}</span>
+            <ion-icon class="selected checkmark" name="checkmark"></ion-icon>
+          </div>
+        `;
+    } else {
+      allContacts += `
+          <div class="contact" onClick="selectContact(this)">
+            <ion-icon name="person-circle"></ion-icon>
+              <span id="${contact.name}">${contact.name}</span>
+            <ion-icon class="checkmark" name="checkmark"></ion-icon>
+          </div>
+        `;
+    }
+  }
 }
