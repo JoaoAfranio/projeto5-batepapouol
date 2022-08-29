@@ -234,7 +234,7 @@ function createContact(contact) {
   if (contact.name !== nameUser) {
     if (contact.name === privacyContact) {
       allContacts += `
-          <div class="contact" onClick="selectContact(this)">
+          <div data-identifier="participant" class="contact" onClick="selectContact(this)">
             <ion-icon name="person-circle"></ion-icon>
               <span id="${contact.name}">${contact.name}</span>
             <ion-icon class="selected checkmark" name="checkmark"></ion-icon>
@@ -242,7 +242,7 @@ function createContact(contact) {
         `;
     } else {
       allContacts += `
-          <div class="contact" onClick="selectContact(this)">
+          <div data-identifier="participant" class="contact" onClick="selectContact(this)">
             <ion-icon name="person-circle"></ion-icon>
               <span id="${contact.name}">${contact.name}</span>
             <ion-icon class="checkmark" name="checkmark"></ion-icon>
